@@ -1,5 +1,6 @@
 import 'package:booklyapp/core/Styles.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'Best_seller_ListView.dart';
 import 'Custom_App_Bar.dart';
 import 'Featured_List_View.dart';
