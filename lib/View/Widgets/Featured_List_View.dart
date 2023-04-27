@@ -10,6 +10,7 @@ class FeaturedBooksListView extends StatelessWidget {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.3,
       child: ListView.builder(
+          itemCount: 10,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, idex) {
             return const Padding(
