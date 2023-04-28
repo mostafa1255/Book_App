@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
+import 'Book_Rating.dart';
 import 'Custom_Bookdetails_AppBar.dart';
 import 'Custom_List_Item.dart';
 import 'Featured_List_View.dart';
@@ -18,6 +19,7 @@ class BookdetailsViewBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const CustomBookdetailsAppBar(),
           Padding(
@@ -41,6 +43,9 @@ class BookdetailsViewBody extends StatelessWidget {
               style: Styles.textStyle18.copyWith(
                   fontStyle: FontStyle.italic, fontWeight: FontWeight.w500),
             ),
+          ),
+          BookRate(
+            mainAxisAlignment: MainAxisAlignment.center,
           )
         ],
       ),

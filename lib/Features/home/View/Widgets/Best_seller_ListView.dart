@@ -69,7 +69,7 @@ class BestSellerListview extends StatelessWidget {
                               .copyWith(fontWeight: FontWeight.bold),
                         ),
                         const Spacer(),
-                        const BookRate()
+                        BookRate()
                       ],
                     )
                   ],
