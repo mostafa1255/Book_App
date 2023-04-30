@@ -14,11 +14,15 @@ class HomeRepoImpl extends HomeRepo {
     try {
       var data = await apiServeces.get(
           endpoint:
-              "volumes?Filtering=free-ebooks&Sorting=newest &q=subject:Programming");
+              "volumes?Filtering=free-ebooks&Sorting=newest&q=subject:computer science");
       List<BookModel> Books = [];
 
       for (var items in data["items"]) {
-        Books.add(BookModel.fromJson(items));
+        try {
+          Books.add(BookModel.fromJson(items));
+        } on Exception catch (e) {
+          Books.add(BookModel.fromJson(items));
+        }
       }
       return right(Books);
     } on Exception catch (e) {
@@ -49,6 +53,31 @@ class HomeRepoImpl extends HomeRepo {
           e.toString(),
         ),
       );
+    }
+  }
+
+  @override
+  Future<Either<Faliures, List<BookModel>>> fetchSimilarBooks(
+      {required String Category}) async {
+    try {
+      var data = await apiServeces.get(
+          endpoint:
+              "volumes?Filtering=free-ebooks&Sorting=relevance&q=$Category");
+      List<BookModel> Books = [];
+
+      for (var items in data["items"]) {
+        try {
+          Books.add(BookModel.fromJson(items));
+        } on Exception catch (e) {
+          Books.add(BookModel.fromJson(items));
+        }
+      }
+      return right(Books);
+    } on Exception catch (e) {
+      if (e is DioError) {
+        return left(ServerFaliure.fromDioError(e));
+      }
+      return left(ServerFaliure(e.toString()));
     }
   }
 }

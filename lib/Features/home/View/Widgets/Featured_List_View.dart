@@ -24,8 +24,9 @@ class FeaturedBooksListView extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: CustomBookImage(
-                        urlImage:
-                            State.books[index].volumeInfo.imageLinks.thumbnail),
+                        urlImage: State.books[index].volumeInfo.imageLinks
+                                ?.thumbnail ??
+                            "https://kbimages1-a.akamaihd.net/eac349ef-86d3-4ae3-a2c8-1d02dd23693a/353/569/90/False/c-programming-language-classmate-in-a-book-2021-release.jpg"),
                   );
                 }),
           );
