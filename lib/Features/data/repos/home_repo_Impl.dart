@@ -6,7 +6,9 @@ import 'package:booklyapp/core/errors/faliures.dart';
 import 'package:dio/dio.dart';
 
 class HomeRepoImpl extends HomeRepo {
-  late ApiServeces apiServeces;
+  final ApiServeces apiServeces;
+
+  HomeRepoImpl(this.apiServeces);
   @override
   Future<Either<Faliures, List<BookModel>>> fetchNewestSellerBook() async {
     try {
