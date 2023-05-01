@@ -14,7 +14,7 @@ class BestSellerListview extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(Approuter.bookdetails);
+        GoRouter.of(context).push(Approuter.bookdetails, extra: bookModel);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -24,7 +24,8 @@ class BestSellerListview extends StatelessWidget {
             children: [
               CustomBookImage(
                   urlImage: bookModel.volumeInfo.imageLinks?.thumbnail ??
-"https://kbimages1-a.akamaihd.net/eac349ef-86d3-4ae3-a2c8-1d02dd23693a/353/569/90/False/c-programming-language-classmate-in-a-book-2021-release.jpg"),              const SizedBox(
+                      "https://kbimages1-a.akamaihd.net/eac349ef-86d3-4ae3-a2c8-1d02dd23693a/353/569/90/False/c-programming-language-classmate-in-a-book-2021-release.jpg"),
+              const SizedBox(
                 width: 30,
               ),
               Expanded(
