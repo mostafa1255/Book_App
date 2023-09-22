@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../core/utils/app_router.dart';
+import '../../../../core/utils/assets.dart';
 import '../../Presentation/Manager/Auth_Cubit/auth_cubit.dart';
 import '../Widgets/CustomAuthGoogle.dart';
 import '../Widgets/CustomTextFormField.dart';
@@ -66,10 +66,12 @@ class LoginScreen extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(
-                            Icons.lock,
-                            color: Colors.white,
-                            size: 120,
+                          SizedBox(
+                            width: device.width * 0.65,
+                            height: device.height * 0.2,
+                            child: Image.asset(
+                              AssetsData.Logo,
+                            ),
                           ),
                           SizedBox(
                             height: device.height * 0.1,
@@ -94,11 +96,17 @@ class LoginScreen extends StatelessWidget {
                                   authcubit.resetPassword(
                                       email: emailController.text);
                                 },
-                                child: const Text(
-                                  "Forgot Password?",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    authcubit.resetPassword(
+                                        email: emailController.text);
+                                  },
+                                  child: const Text(
+                                    "Forgot Password?",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey),
+                                  ),
                                 ),
                               )
                             ],

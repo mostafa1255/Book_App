@@ -1,11 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../core/utils/app_router.dart';
+import '../../../../core/utils/assets.dart';
 import '../../Presentation/Manager/Auth_Cubit/auth_cubit.dart';
 import '../Widgets/CustomAuthGoogle.dart';
 import '../Widgets/CustomTextFormField.dart';
@@ -62,12 +61,11 @@ class RegisterScreen extends StatelessWidget {
                             SizedBox(
                               height: device.height * 0.1,
                             ),
-                            const Text(
-                              "Sign Up",
-                              style: TextStyle(
-                                  fontSize: 60,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                            SizedBox(
+                              width: device.width * 0.65,
+                              child: Image.asset(
+                                AssetsData.Logo,
+                              ),
                             ),
                             SizedBox(
                               height: device.height * 0.2,
@@ -80,7 +78,7 @@ class RegisterScreen extends StatelessWidget {
                             CustomTextFormField(
                                 stringController: passwordController,
                                 device: device,
-                                hinttext: "Paswword",
+                                hinttext: "Password",
                                 SecurPass: true),
                             GestureDetector(
                               onTap: () {
@@ -97,7 +95,7 @@ class RegisterScreen extends StatelessWidget {
                                     color: Colors.blue),
                                 child: const Center(
                                     child: Text(
-                                  "login",
+                                  "Sign Up",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
@@ -122,7 +120,8 @@ class RegisterScreen extends StatelessWidget {
                               screen: "Login",
                               text: "do you have an account",
                               onTap: () {
-                                GoRouter.of(context).push(Approuter.homeview);
+                                GoRouter.of(context)
+                                    .push(Approuter.loginscreen);
                               },
                             )
                           ],

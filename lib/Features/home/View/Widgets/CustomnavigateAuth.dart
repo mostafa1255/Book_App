@@ -15,10 +15,8 @@ class CustomnavigateAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(
-          width: device.width * 0.2,
-        ),
         Text(text),
         const SizedBox(
           width: 7,
