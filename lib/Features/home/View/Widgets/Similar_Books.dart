@@ -1,12 +1,13 @@
-import 'package:booklyapp/Features/home/Presentation/Manager/Similar%20Books/similar_books_cubit.dart';
-import 'package:booklyapp/Features/home/View/Widgets/Custom_ErrorMessage.dart';
-import 'package:booklyapp/Features/home/View/Widgets/Custom_List_Item.dart';
-import 'package:booklyapp/Features/home/View/Widgets/Custom_LoadingIndicator.dart';
+
+import 'package:booklyapp/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/utils/app_router.dart';
+import '../../Presentation/Manager/Similar Books/similar_books_cubit.dart';
+import 'Custom_ErrorMessage.dart';
+import 'Custom_List_Item.dart';
+import 'Custom_LoadingIndicator.dart';
 
 class SimilarBooksListView extends StatelessWidget {
   const SimilarBooksListView({super.key});

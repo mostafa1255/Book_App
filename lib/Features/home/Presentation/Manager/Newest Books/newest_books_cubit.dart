@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:booklyapp/Features/data/models/book_model/book_model.dart';
-import 'package:booklyapp/Features/data/repos/home_repos.dart';
 import 'package:equatable/equatable.dart';
+import '../../../../data/models/book_model/book_model.dart';
+import '../../../../data/repos/home_repos.dart';
 part 'newest_books_state.dart';
 
 class NewestBooksCubit extends Cubit<NewestBooksState> {

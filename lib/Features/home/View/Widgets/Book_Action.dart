@@ -1,9 +1,7 @@
-import 'package:booklyapp/Features/data/models/book_model/book_model.dart';
 import 'package:booklyapp/core/utils/Function/Launch_Url.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import '../../../../core/widgets/Custom_Button.dart';
+import '../../../data/models/book_model/book_model.dart';
 
 class BooksAction extends StatelessWidget {
   const BooksAction({super.key, required this.bookModel});
@@ -26,7 +24,7 @@ class BooksAction extends StatelessWidget {
           child: CustomButton(
               onPressed: () async {
                 //  Uri url = Uri.parse(bookModel.volumeInfo.previewLink!);
-                LauchCustomUrl(context, 'bookModel.volumeInfo.previewLink!');
+                LauchCustomUrl(context, bookModel.volumeInfo.previewLink!);
               },
               fontSize: 15,
               text: getText(bookModel),

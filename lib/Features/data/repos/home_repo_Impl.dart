@@ -1,9 +1,11 @@
-import 'package:booklyapp/Features/data/models/book_model/book_model.dart';
-import 'package:booklyapp/Features/data/repos/home_repos.dart';
+
 import 'package:booklyapp/core/utils/api_Services.dart';
 import 'package:dartz/dartz.dart';
 import 'package:booklyapp/core/errors/faliures.dart';
 import 'package:dio/dio.dart';
+
+import '../models/book_model/book_model.dart';
+import 'home_repos.dart';
 
 class HomeRepoImpl extends HomeRepo {
   final ApiServeces apiServeces;
@@ -14,7 +16,7 @@ class HomeRepoImpl extends HomeRepo {
     try {
       var data = await apiServeces.get(
           endpoint:
-              "volumes?Filtering=free-ebooks&Sorting=newest&q=subject:computer science");
+              "volumes?Filtering=free-ebooks&Sorting=newest&q=subject:Programming");
       List<BookModel> Books = [];
 
       for (var items in data["items"]) {

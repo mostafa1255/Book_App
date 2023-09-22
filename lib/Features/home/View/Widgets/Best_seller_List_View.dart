@@ -1,9 +1,10 @@
-import 'package:booklyapp/Features/home/Presentation/Manager/Newest%20Books/newest_books_cubit.dart';
-import 'package:booklyapp/Features/home/View/Widgets/Custom_ErrorMessage.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../Presentation/Manager/Newest Books/newest_books_cubit.dart';
 import 'Best_seller_ListView.dart';
+import 'Custom_ErrorMessage.dart';
 import 'Custom_LoadingIndicator.dart';
 
 class BestSellerListView extends StatelessWidget {

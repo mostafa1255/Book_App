@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1024189385608",
+    "project_id": "book-app-562ca",
+    "storage_bucket": "book-app-562ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024189385608:android:62d8d157689d0ef749883d",
+        "android_client_info": {
+          "package_name": "com.example.booklyapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfG0oodad1-N-bK6rhYHlO7FzJFnoaWxI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

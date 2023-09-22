@@ -1,14 +1,14 @@
-import 'package:booklyapp/Features/Search/Presentation/Views/Search_View.dart';
-import 'package:booklyapp/Features/data/models/book_model/book_model.dart';
-import 'package:booklyapp/Features/data/repos/home_repo_Impl.dart';
-import 'package:booklyapp/Features/data/repos/home_repos.dart';
-import 'package:booklyapp/Features/home/Presentation/Manager/Similar%20Books/similar_books_cubit.dart';
-import 'package:booklyapp/Features/home/View/Book_details.dart';
-import 'package:booklyapp/Features/home/View/Screens/Home_view.dart';
+import 'package:booklyapp/Features/home/View/Screens/Register_Screen.dart';
 import 'package:booklyapp/core/utils/Servece_Locator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../Features/Search/Presentation/Views/Search_View.dart';
+import '../../Features/data/models/book_model/book_model.dart';
+import '../../Features/data/repos/home_repo_Impl.dart';
+import '../../Features/home/Presentation/Manager/Similar Books/similar_books_cubit.dart';
+import '../../Features/home/View/Book_details.dart';
+import '../../Features/home/View/Screens/Home_view.dart';
 import '../../Features/home/View/Screens/Splash_View.dart';
 
 abstract class Approuter {
@@ -18,9 +18,9 @@ abstract class Approuter {
   static final router = GoRouter(
     routes: [
       GoRoute(
-        path: '/',
-        builder: (context, state) => const SplashView(),
-      ),
+          path: '/',
+          builder: (context, state) =>  RegisterScreen() //SplashView(),
+          ),
       GoRoute(
         path: '/homeView',
         builder: (context, state) => const HomeView(),

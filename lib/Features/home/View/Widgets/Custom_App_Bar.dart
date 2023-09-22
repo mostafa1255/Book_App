@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/utils/assets.dart';
-
 class Custom_AppBar extends StatelessWidget {
   const Custom_AppBar({
     super.key,
