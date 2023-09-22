@@ -14,6 +14,8 @@ class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final nameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     var device = MediaQuery.of(context).size;
@@ -49,6 +51,7 @@ class RegisterScreen extends StatelessWidget {
         builder: (context, state) {
           var authcubit = BlocProvider.of<AuthCubit>(context);
           return Scaffold(
+            resizeToAvoidBottomInset: true,
             body: Center(
                 child: state is LoadingSate
                     ? const SpinKitWave(
@@ -71,6 +74,11 @@ class RegisterScreen extends StatelessWidget {
                               height: device.height * 0.2,
                             ),
                             CustomTextFormField(
+                                stringController: nameController,
+                                device: device,
+                                hinttext: "Name",
+                                SecurPass: false),
+                            CustomTextFormField(
                                 stringController: emailController,
                                 device: device,
                                 hinttext: "Email",
@@ -84,6 +92,7 @@ class RegisterScreen extends StatelessWidget {
                               onTap: () {
                                 print("Clicked");
                                 authcubit.Register(
+                                    name: nameController.text,
                                     email: emailController.text,
                                     password: passwordController.text);
                               },

@@ -56,6 +56,7 @@ class LoginScreen extends StatelessWidget {
         builder: (context, state) {
           var authcubit = BlocProvider.of<AuthCubit>(context);
           return Scaffold(
+            resizeToAvoidBottomInset: true,
             body: Center(
               child: state is LoadingSate
                   ? const SpinKitWave(

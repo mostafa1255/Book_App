@@ -36,3 +36,10 @@ class googleSignFaliure extends AuthState {
 }
 
 ///
+class SucsessSavedatatofireStore extends AuthState {}
+
+class FaliureSavedatatofireStore extends AuthState {
+  final String errmessage;
+
+  FaliureSavedatatofireStore(this.errmessage);
+}
