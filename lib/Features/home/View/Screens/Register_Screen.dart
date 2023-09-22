@@ -23,31 +23,28 @@ class RegisterScreen extends StatelessWidget {
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthSignSucsess) {
-            SnackBar(
-              content: Text("Create Email Sucsessfull"),
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content:
+                  Text('Create Email Sucsessfull , Please Verify your account'),
               backgroundColor: Colors.green,
-            );
-
-            GoRouter.of(context).push(Approuter.homeview);
-
-            ///
-          } else if (state is googleSignSucsess) {
-            SnackBar(
-              content: Text("Create Email Sucsessfull"),
-              backgroundColor: Colors.green,
-            );
-
-            GoRouter.of(context).push(Approuter.homeview);
-          } else if (state is googleSignFaliure) {
-            SnackBar(
-              content: Text(state.errmessage),
-              backgroundColor: Colors.red,
-            );
+            ));
+            GoRouter.of(context).push(Approuter.loginscreen);
           } else if (state is AuthSignFaliure) {
-            SnackBar(
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(state.errmessage),
               backgroundColor: Colors.red,
-            );
+            ));
+          } else if (state is googleSignSucsess) {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('Create Email Sucsessfull'),
+              backgroundColor: Colors.green,
+            ));
+            GoRouter.of(context).push(Approuter.loginscreen);
+          } else if (state is googleSignFaliure) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(state.errmessage),
+              backgroundColor: Colors.red,
+            ));
           }
         },
         builder: (context, state) {

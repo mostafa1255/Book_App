@@ -18,6 +18,7 @@ class CustomTextFormField extends StatelessWidget {
       height: device.height * 0.1,
       width: device.width * 0.88,
       child: TextFormField(
+        style: TextStyle(color: Colors.black),
         controller: stringController,
         obscureText: SecurPass,
         decoration: InputDecoration(
