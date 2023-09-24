@@ -1,3 +1,4 @@
+import 'package:booklyapp/Features/home/Presentation/Manager/Layout_Cubit/layout_cubit.dart';
 import 'package:booklyapp/core/Constants.dart';
 import 'package:booklyapp/core/utils/Servece_Locator.dart';
 import 'package:booklyapp/core/utils/app_router.dart';
@@ -31,7 +32,10 @@ class BookApp extends StatelessWidget {
               ..fetchFeaturedBooks()),
         BlocProvider(
             create: (context) => NewestBooksCubit(getIt.get<HomeRepoImpl>())
-              ..fetchNewestSellerBook())
+              ..fetchNewestSellerBook()),
+        BlocProvider(
+          create: (context) => LayoutCubit()..GetUserData()..GetMyData(),
+        )
       ],
       child: MaterialApp.router(
         routerConfig: Approuter.router,

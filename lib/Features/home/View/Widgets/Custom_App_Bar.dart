@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/utils/assets.dart';
+
 class Custom_AppBar extends StatelessWidget {
   const Custom_AppBar({
     super.key,
@@ -16,7 +17,7 @@ class Custom_AppBar extends StatelessWidget {
       children: [
         Image.asset(
           AssetsData.Logo,
-          height: 20,
+          height: 35,
           width: 80,
         ),
         IconButton(

@@ -64,10 +64,6 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void signOut() async {
-    await auth.signOut();
-  }
-
   Future<UserCredential?> signInWithGoogle() async {
     emit(LoadingSate());
     try {
@@ -75,41 +71,20 @@ class AuthCubit extends Cubit<AuthState> {
 
       final GoogleSignInAuthentication? googleAuth =
           await googleUser?.authentication;
-      //  print("user name is${googleUser!.displayName}");
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
-      if (kDebugMode) {
-        print(auth.currentUser?.uid);
-      }
+      emit(googleSignSucsess());
       await sendUserDatatoFirestore(
         name: googleUser?.displayName,
         email: googleUser?.email,
         userId: auth.currentUser?.uid,
       );
-      emit(googleSignSucsess());
       return await FirebaseAuth.instance.signInWithCredential(credential);
     } on Exception catch (e) {
       emit(googleSignFaliure(errmessage: e.toString()));
       return null;
-    }
-  }
-
-  ///
-  void deleteAccount() async {
-    await auth.currentUser?.delete();
-  }
-
-  //
-  Future<void> resetPassword({required String email}) async {
-    try {
-      if (email != "") {
-        await auth.sendPasswordResetEmail(email: email.toString());
-        print("Reset sucsess");
-      }
-    } on Exception catch (e) {
-      print("Reset faliure${e.toString()}");
     }
   }
 
@@ -127,6 +102,27 @@ class AuthCubit extends Cubit<AuthState> {
       emit(SucsessSavedatatofireStore());
     } on FirebaseException catch (e) {
       emit(FaliureSavedatatofireStore(e.toString()));
+    }
+  }
+
+  Future<void> signOut() async {
+    await auth.signOut();
+  }
+
+  ///
+  Future<void> deleteAccount() async {
+    await auth.currentUser?.delete();
+  }
+
+  //
+  Future<void> resetPassword({required String email}) async {
+    try {
+      if (email != "") {
+        await auth.sendPasswordResetEmail(email: email.toString());
+        print("Reset sucsess");
+      }
+    } on Exception catch (e) {
+      print("Reset faliure${e.toString()}");
     }
   }
 }
