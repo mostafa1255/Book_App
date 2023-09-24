@@ -75,10 +75,18 @@ class AuthCubit extends Cubit<AuthState> {
 
       final GoogleSignInAuthentication? googleAuth =
           await googleUser?.authentication;
-
+      //  print("user name is${googleUser!.displayName}");
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
+      );
+      if (kDebugMode) {
+        print(auth.currentUser?.uid);
+      }
+      await sendUserDatatoFirestore(
+        name: googleUser?.displayName,
+        email: googleUser?.email,
+        userId: auth.currentUser?.uid,
       );
       emit(googleSignSucsess());
       return await FirebaseAuth.instance.signInWithCredential(credential);
@@ -106,9 +114,9 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> sendUserDatatoFirestore({
-    required String name,
-    required String email,
-    required String userId,
+    required String? name,
+    required String? email,
+    required String? userId,
   }) async {
     userModel usermodel = userModel(email: email, id: userId, name: name);
     try {

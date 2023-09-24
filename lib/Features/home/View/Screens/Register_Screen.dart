@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
@@ -10,10 +9,18 @@ import '../Widgets/CustomAuthGoogle.dart';
 import '../Widgets/CustomTextFormField.dart';
 import '../Widgets/CustomnavigateAuth.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
   final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
+
   final nameController = TextEditingController();
 
   @override
@@ -117,6 +124,8 @@ class RegisterScreen extends StatelessWidget {
                             ),
                             CustomAuthGoogle(
                                 googleonPressed: () async {
+                                  setState(() {});
+
                                   await authcubit.signInWithGoogle();
                                 },
                                 device: device,

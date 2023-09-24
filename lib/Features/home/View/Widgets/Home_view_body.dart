@@ -1,7 +1,6 @@
 import 'package:booklyapp/core/Styles.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'Best_seller_ListView.dart';
 import 'Best_seller_List_View.dart';
 import 'Custom_App_Bar.dart';
 import 'Featured_List_View.dart';
@@ -11,6 +10,7 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("in home screen with uid ${FirebaseAuth.instance.currentUser!.uid}");
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: [
