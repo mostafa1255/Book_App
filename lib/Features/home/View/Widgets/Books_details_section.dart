@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../../../../core/Styles.dart';
 import '../../../data/models/book_model/book_model.dart';
@@ -7,21 +6,22 @@ import 'Book_Rating.dart';
 import 'Custom_List_Item.dart';
 
 class BookDetailsSection extends StatelessWidget {
-  BookDetailsSection({super.key, required this.width, required this.bookModel});
-  var width;
+  BookDetailsSection(
+      {super.key, required this.device, required this.bookModel});
+  Size device;
   final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: width * 0.19),
+          padding: EdgeInsets.symmetric(horizontal: device.width * 0.19),
           child: CustomBookImage(
               urlImage: bookModel.volumeInfo.imageLinks?.thumbnail ??
                   "https://kbimages1-a.akamaihd.net/eac349ef-86d3-4ae3-a2c8-1d02dd23693a/353/569/90/False/c-programming-language-classmate-in-a-book-2021-release.jpg"),
         ),
-        const SizedBox(
-          height: 43,
+        SizedBox(
+          height: device.height * 0.04,
         ),
         Text(
           bookModel.volumeInfo.title.toString(),

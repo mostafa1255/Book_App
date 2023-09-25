@@ -1,9 +1,10 @@
 import 'package:booklyapp/Features/home/View/Screens/Login_Screen.dart';
 import 'package:booklyapp/Features/home/View/Screens/Register_Screen.dart';
+import 'package:booklyapp/Features/home/View/Screens/Settings_Screen.dart';
 import 'package:booklyapp/core/utils/Servece_Locator.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../Features/Search/Presentation/Views/Search_View.dart';
 import '../../Features/data/models/book_model/book_model.dart';
 import '../../Features/data/repos/home_repo_Impl.dart';
@@ -17,10 +18,13 @@ abstract class Approuter {
   static const searchview = "/SearchView";
   static const loginscreen = "/LoginScreen";
   static const registerscreen = "/RegisterScreen";
+  static const profilesettingsscreen = "/ProfileSettingsScreen";
 
   static final router = GoRouter(
     routes: [
-      GoRoute(path: '/', builder: (context, state) => HomeView() //SplashView(),
+      GoRoute(
+          path: '/',
+          builder: (context, state) => RegisterScreen() //SplashView(),
           ),
       GoRoute(
         path: registerscreen,
@@ -45,6 +49,10 @@ abstract class Approuter {
       GoRoute(
         path: searchview,
         builder: (context, state) => const SearchView(),
+      ),
+      GoRoute(
+        path: profilesettingsscreen,
+        builder: (context, state) => ProfileSettingsScreen(),
       ),
     ],
   );

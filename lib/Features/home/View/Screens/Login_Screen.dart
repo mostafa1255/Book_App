@@ -26,7 +26,7 @@ class LoginScreen extends StatelessWidget {
             backgroundColor: Colors.green,
           ));
           GoRouter.of(context).push(Approuter.homeview);
-        } else if (user.currentUser!.emailVerified == false) {
+        } else if (user.currentUser?.emailVerified == false) {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text(
                 'Please Click Your Link in your Email to Verify Your Account'),

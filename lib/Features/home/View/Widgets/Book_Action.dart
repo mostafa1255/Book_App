@@ -8,25 +8,26 @@ class BooksAction extends StatelessWidget {
   final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
+    var device = MediaQuery.sizeOf(context);
+
     return Row(
       children: [
-        const Expanded(
+        Expanded(
           child: CustomButton(
-            fontSize: 18,
+            fontSize: device.width * 0.053,
             text: "Free",
             backgroundColor: Colors.white,
             textColor: Colors.black,
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(12), bottomLeft: Radius.circular(12)),
           ),
         ),
         Expanded(
           child: CustomButton(
               onPressed: () async {
-                //  Uri url = Uri.parse(bookModel.volumeInfo.previewLink!);
                 LauchCustomUrl(context, bookModel.volumeInfo.previewLink!);
               },
-              fontSize: 15,
+              fontSize: device.width * 0.047,
               text: getText(bookModel),
               backgroundColor: const Color(0xffEF8262),
               textColor: Colors.white,

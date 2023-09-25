@@ -14,6 +14,7 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size device = MediaQuery.sizeOf(context);
     constants.userUid = FirebaseAuth.instance.currentUser?.uid;
     if (kDebugMode) {
       print(FirebaseAuth.instance.currentUser?.uid);
@@ -31,17 +32,22 @@ class HomeViewBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(
-                        left: 20, right: 20, top: 35, bottom: 18),
-                    child: Custom_AppBar(),
+                        left: device.width * 0.05,
+                        right: device.width * 0.05,
+                        top: device.height * 0.05,
+                        bottom: device.height * 0.02),
+                    child: const Custom_AppBar(),
                   ),
                   const FeaturedBooksListView(),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 20),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: device.width * 0.05,
+                        vertical: device.height * 0.02),
                     child: Text(layoutCubit.usermodel?.name ?? "Best Seller",
-                        style: Styles.textStyle18.copyWith(fontSize: 21)),
+                        style: Styles.textStyle18
+                            .copyWith(fontSize: device.width * 0.07)),
                   ),
                 ],
               ),

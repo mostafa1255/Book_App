@@ -1,4 +1,3 @@
-
 import 'package:booklyapp/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,17 +13,20 @@ class SimilarBooksListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var device = MediaQuery.sizeOf(context);
+
     return BlocBuilder<SimilarBooksCubit, SimilarBooksState>(
       builder: (context, State) {
         if (State is SimilarBooksSucsess) {
           return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.15,
+            height: device.height * 0.15,
             child: ListView.builder(
                 itemCount: State.books.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: device.width * 0.02),
                     child: GestureDetector(
                       onTap: () => GoRouter.of(context).push(
                           Approuter.bookdetails,

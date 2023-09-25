@@ -7,6 +7,8 @@ class SimilarBooksSections extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var device = MediaQuery.sizeOf(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -14,8 +16,8 @@ class SimilarBooksSections extends StatelessWidget {
           "You can also like",
           style: Styles.textStyle14.copyWith(fontWeight: FontWeight.w600),
         ),
-        const SizedBox(
-          height: 20,
+        SizedBox(
+          height: device.height * 0.025,
         ),
         const SimilarBooksListView(),
       ],

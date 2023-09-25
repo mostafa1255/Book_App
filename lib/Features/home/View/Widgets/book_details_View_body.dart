@@ -9,25 +9,27 @@ class BookdetailsViewBody extends StatelessWidget {
   final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+    var device = MediaQuery.sizeOf(context);
 
     return CustomScrollView(
       slivers: [
         SliverFillRemaining(
           hasScrollBody: false,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
+            padding: EdgeInsets.symmetric(
+                horizontal: device.width * 0.05,
+                vertical: device.height * 0.05),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const CustomBookdetailsAppBar(),
                 BookDetailsSection(
-                  width: width,
+                  device: device,
                   bookModel: bookModel,
                 ),
-                const Expanded(
+                Expanded(
                   child: SizedBox(
-                    height: 20,
+                    height: device.height * 0.03,
                   ),
                 ),
                 const SimilarBooksSections()

@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,6 +11,7 @@ class BestSellerListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size device = MediaQuery.sizeOf(context);
     return BlocBuilder<NewestBooksCubit, NewestBooksState>(
       builder: (context, State) {
         if (State is NewestBooksSuccsess) {
@@ -22,7 +22,8 @@ class BestSellerListView extends StatelessWidget {
               padding: EdgeInsets.zero,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding:
+                      EdgeInsets.symmetric(vertical: device.height * 0.015),
                   child: BestSellerListview(bookModel: State.books[index]),
                 );
               });

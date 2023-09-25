@@ -16,15 +16,18 @@ class FeaturedBooksListView extends StatelessWidget {
     return BlocBuilder<FeaturedBooksCubit, FeaturedBooksState>(
       builder: (context, State) {
         if (State is FeaturedBooksSuccsess) {
+          Size device = MediaQuery.sizeOf(context);
+
           return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
+            height: device.height * 0.3,
             child: ListView.builder(
                 itemCount: State.books.length,
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: device.width * 0.03),
                     child: GestureDetector(
                       onTap: () => GoRouter.of(context).push(
                           Approuter.bookdetails,
