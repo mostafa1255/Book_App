@@ -1,9 +1,11 @@
+import 'package:booklyapp/Features/home/Presentation/Manager/Auth_Cubit/auth_cubit.dart';
 import 'package:booklyapp/Features/home/Presentation/Manager/Layout_Cubit/layout_cubit.dart';
 import 'package:booklyapp/core/Constants.dart';
 import 'package:booklyapp/core/utils/Servece_Locator.dart';
 import 'package:booklyapp/core/utils/app_router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'Features/data/repos/home_repo_Impl.dart';
@@ -16,6 +18,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   setupGetit();
   runApp(const BookApp());
 }
@@ -34,7 +37,10 @@ class BookApp extends StatelessWidget {
             create: (context) => NewestBooksCubit(getIt.get<HomeRepoImpl>())
               ..fetchNewestSellerBook()),
         BlocProvider(
-          create: (context) => LayoutCubit()..GetUserData()..GetMyData(),
+          create: (context) => LayoutCubit()..GetMyData(),
+        ),
+        BlocProvider(
+          create: (context) => AuthCubit(),
         )
       ],
       child: MaterialApp.router(

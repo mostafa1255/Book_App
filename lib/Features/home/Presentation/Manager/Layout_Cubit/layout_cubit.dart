@@ -4,9 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:meta/meta.dart';
-
 import '../../../../data/models/User_Model.dart';
-
 part 'layout_state.dart';
 
 class LayoutCubit extends Cubit<LayoutState> {

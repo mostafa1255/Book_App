@@ -67,7 +67,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   // ignore: non_constant_identifier_names
   void NavigateTo_HomePage() {
     Future.delayed(const Duration(seconds: 2), () {
-      GoRouter.of(context).push(Approuter.homeview);
+      GoRouter.of(context).push(Approuter.registerscreen);
     });
   }
 }

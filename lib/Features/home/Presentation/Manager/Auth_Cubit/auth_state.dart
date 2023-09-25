@@ -43,3 +43,19 @@ class FaliureSavedatatofireStore extends AuthState {
 
   FaliureSavedatatofireStore(this.errmessage);
 }
+
+class SucsessdeleteAccount extends AuthState {}
+
+class FaliuredeleteAccount extends AuthState {
+  final String errmessage;
+
+  FaliuredeleteAccount(this.errmessage);
+}
+
+class SignOutSucsess extends AuthState {}
+
+class SignOutFaliure extends AuthState {
+  final String errmessage;
+
+  SignOutFaliure(this.errmessage);
+}

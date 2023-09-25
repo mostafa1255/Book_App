@@ -15,8 +15,7 @@ class CustomBookdetailsAppBar extends StatelessWidget {
               GoRouter.of(context).pop();
             },
             icon: const Icon(Icons.close)),
-        IconButton(
-            onPressed: () {}, icon: const Icon(FontAwesomeIcons.cartShopping)),
+        IconButton(onPressed: () {}, icon: const Icon(Icons.account_circle)),
       ],
     );
   }

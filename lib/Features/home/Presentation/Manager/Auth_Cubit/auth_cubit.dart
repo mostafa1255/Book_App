@@ -106,12 +106,22 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> signOut() async {
-    await auth.signOut();
+    try {
+      await auth.signOut();
+      emit(SignOutSucsess());
+    } on Exception catch (e) {
+      emit(SignOutFaliure(e.toString()));
+    }
   }
 
   ///
   Future<void> deleteAccount() async {
-    await auth.currentUser?.delete();
+    try {
+      await auth.currentUser?.delete();
+      emit(SucsessdeleteAccount());
+    } on Exception catch (e) {
+      emit(FaliuredeleteAccount(e.toString()));
+    }
   }
 
   //
