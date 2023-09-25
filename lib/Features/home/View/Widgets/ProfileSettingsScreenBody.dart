@@ -16,7 +16,6 @@ class ProfileSettingsScreenBody extends StatelessWidget {
     return BlocBuilder<LayoutCubit, LayoutState>(
       builder: (context, state) {
         var layoutcubit = BlocProvider.of<LayoutCubit>(context);
-
         return BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
             if (state is SucsessdeleteAccount) {
@@ -43,7 +42,6 @@ class ProfileSettingsScreenBody extends StatelessWidget {
           },
           builder: (context, state) {
             var authCubit = BlocProvider.of<AuthCubit>(context);
-
             return SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.symmetric(
@@ -60,11 +58,11 @@ class ProfileSettingsScreenBody extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: device.height * 0.08,
+                      height: device.height * 0.12,
                     ),
                     Row(
                       children: [
-                        Text(
+                        const Text(
                           "Name :",
                         ),
                         Text(layoutcubit.usermodel?.name ?? " There is no Name")
@@ -75,7 +73,7 @@ class ProfileSettingsScreenBody extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text(
+                        const Text(
                           "Email :",
                         ),
                         Text(layoutcubit.usermodel?.email ??
@@ -83,7 +81,7 @@ class ProfileSettingsScreenBody extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: device.height * 0.1,
+                      height: device.height * 0.45,
                     ),
                     Custom_Button(
                       device: device,

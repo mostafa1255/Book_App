@@ -13,19 +13,17 @@ class ServerFaliure extends Faliures {
     switch (dioError.type) {
       case DioErrorType.connectionTimeout:
         return ServerFaliure('Connection timeout with ApiServer');
-
+      case DioErrorType.connectionError:
+        return ServerFaliure("Bad Connection , Please try Again Later");
       case DioErrorType.sendTimeout:
         return ServerFaliure('Send timeout with ApiServer');
-
       case DioErrorType.receiveTimeout:
         return ServerFaliure('Receive timeout with ApiServer');
-
       case DioErrorType.badResponse:
         return ServerFaliure.fromResponse(
             dioError.response!.data!, dioError.response!.data);
       case DioErrorType.cancel:
         return ServerFaliure('Request to ApiServer was canceld');
-
       case DioErrorType.unknown:
         if (dioError.message!.contains('SocketException')) {
           return ServerFaliure('No Internet Connection');

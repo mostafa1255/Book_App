@@ -14,9 +14,9 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    constants.userUid = FirebaseAuth.instance.currentUser!.uid;
+    constants.userUid = FirebaseAuth.instance.currentUser?.uid;
     if (kDebugMode) {
-      print(FirebaseAuth.instance.currentUser!.uid);
+      print(FirebaseAuth.instance.currentUser?.uid);
     }
     return BlocConsumer<LayoutCubit, LayoutState>(
       listener: (context, state) {
