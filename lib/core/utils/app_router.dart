@@ -1,6 +1,7 @@
 import 'package:booklyapp/Features/home/View/Screens/Login_Screen.dart';
 import 'package:booklyapp/Features/home/View/Screens/Register_Screen.dart';
 import 'package:booklyapp/Features/home/View/Screens/Settings_Screen.dart';
+import 'package:booklyapp/Features/home/View/Screens/Splash_View.dart';
 import 'package:booklyapp/core/utils/Servece_Locator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,9 +24,9 @@ abstract class Approuter {
   static final router = GoRouter(
     routes: [
       GoRoute(
-          path: '/',
-          builder: (context, state) => RegisterScreen() //SplashView(),
-          ),
+        path: '/',
+        builder: (context, state) => SplashView(),
+      ),
       GoRoute(
         path: registerscreen,
         builder: (context, state) => RegisterScreen(),

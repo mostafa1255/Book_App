@@ -1,3 +1,4 @@
+import 'package:booklyapp/core/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -20,35 +21,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final nameController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     var device = MediaQuery.of(context).size;
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthSignSucsess) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content:
-                Text('Create Email Sucsessfull , Please Verify your account'),
-            backgroundColor: Colors.green,
-          ));
+          constants.customsnackBar(
+              context,
+              "Create Email Sucsessfull , Please Verify your account",
+              Colors.green);
           GoRouter.of(context).push(Approuter.loginscreen);
         } else if (state is AuthSignFaliure) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(state.errmessage),
-            backgroundColor: Colors.red,
-          ));
+          constants.customsnackBar(context, state.errmessage, Colors.yellow);
         } else if (state is googleSignSucsess) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text('Create Email Sucsessfull'),
-            backgroundColor: Colors.green,
-          ));
-          GoRouter.of(context).push(Approuter.loginscreen);
+          constants.customsnackBar(
+              context, "Create Email Sucsessfull", Colors.green);
+          GoRouter.of(context).push(Approuter.homeview);
         } else if (state is googleSignFaliure) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(state.errmessage),
-            backgroundColor: Colors.red,
-          ));
+          constants.customsnackBar(context, state.errmessage, Colors.yellow);
         }
       },
       builder: (context, state) {
@@ -120,8 +111,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                           CustomAuthGoogle(
                               googleonPressed: () async {
-                                setState(() {});
-
                                 await authcubit.signInWithGoogle();
                               },
                               device: device,
@@ -134,8 +123,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             screen: "Login",
                             text: "do you have an account",
                             onTap: () {
-                              GoRouter.of(context)
-                                  .push(Approuter.loginscreen);
+                              GoRouter.of(context).push(Approuter.loginscreen);
                             },
                           )
                         ],

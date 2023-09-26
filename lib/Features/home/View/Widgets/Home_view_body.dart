@@ -1,3 +1,4 @@
+import 'package:booklyapp/Features/home/Presentation/Manager/Auth_Cubit/auth_cubit.dart';
 import 'package:booklyapp/Features/home/Presentation/Manager/Layout_Cubit/layout_cubit.dart';
 import 'package:booklyapp/core/Constants.dart';
 import 'package:booklyapp/core/Styles.dart';
@@ -9,14 +10,22 @@ import 'Best_seller_List_View.dart';
 import 'Custom_App_Bar.dart';
 import 'Featured_List_View.dart';
 
-class HomeViewBody extends StatelessWidget {
+class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
 
   @override
+  State<HomeViewBody> createState() => _HomeViewBodyState();
+}
+
+class _HomeViewBodyState extends State<HomeViewBody> {
+  @override
   Widget build(BuildContext context) {
     Size device = MediaQuery.sizeOf(context);
+   
+
     constants.userUid = FirebaseAuth.instance.currentUser?.uid;
     if (kDebugMode) {
+      print("====================================================");
       print(FirebaseAuth.instance.currentUser?.uid);
     }
     return BlocConsumer<LayoutCubit, LayoutState>(

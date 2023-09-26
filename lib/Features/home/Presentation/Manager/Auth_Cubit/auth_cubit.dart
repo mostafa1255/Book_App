@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:booklyapp/core/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -75,12 +76,20 @@ class AuthCubit extends Cubit<AuthState> {
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
-      emit(googleSignSucsess());
+      final User? currentuser =
+          (await auth.signInWithCredential(credential)).user;
+
       await sendUserDatatoFirestore(
-        name: googleUser?.displayName,
-        email: googleUser?.email,
-        userId: auth.currentUser?.uid,
-      );
+          name: googleUser!.displayName,
+          email: googleUser.email,
+          userId: currentuser?.uid);
+
+      if (kDebugMode) {
+        print("++++++++++++++++++++++++++++++++++++++");
+        print(currentuser?.uid);
+      }
+      emit(googleSignSucsess());
+
       return await FirebaseAuth.instance.signInWithCredential(credential);
     } on Exception catch (e) {
       emit(googleSignFaliure(errmessage: e.toString()));
@@ -108,6 +117,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signOut() async {
     try {
       await auth.signOut();
+      constants.userUid = null;
       emit(SignOutSucsess());
     } on Exception catch (e) {
       emit(SignOutFaliure(e.toString()));
@@ -118,6 +128,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> deleteAccount() async {
     try {
       await auth.currentUser?.delete();
+      constants.userUid = null;
       emit(SucsessdeleteAccount());
     } on Exception catch (e) {
       emit(FaliuredeleteAccount(e.toString()));

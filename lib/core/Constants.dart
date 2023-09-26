@@ -5,4 +5,16 @@ const KGtSectorFine = "Merriweather";
 
 class constants {
   static String? userUid;
+  static String? googlename;
+  static String? googleemail;
+  
+  static Future<void> customsnackBar(
+      BuildContext context, String messgae, Color color) {
+    return Future.delayed(const Duration(seconds: 1), () {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(messgae),
+        backgroundColor: color,
+      ));
+    });
+  }
 }
