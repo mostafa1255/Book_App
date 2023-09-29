@@ -1,3 +1,4 @@
+import 'package:booklyapp/core/Constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,34 +22,21 @@ class LoginScreen extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthLoginSucsess && user.currentUser!.emailVerified) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text('Login Sucsessfull'),
-            backgroundColor: Colors.green,
-          ));
+          constants.customsnackBar(
+              context, "'Login Sucsessfull'", Colors.green);
           GoRouter.of(context).push(Approuter.homeview);
         } else if (user.currentUser?.emailVerified == false) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text(
-                'Please Click Your Link in your Email to Verify Your Account'),
-            backgroundColor: Colors.red,
-          ));
+          constants.customsnackBar(
+              context,
+              "Please Click Your Link in your Email to Verify Your Account",
+              Colors.yellow);
           user.currentUser!.sendEmailVerification();
         } else if (state is AuthLoginFaliure) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(state.errmessage),
-            backgroundColor: Colors.red,
-          ));
-        } else if (state is googleSignSucsess) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text('Login Sucsessfull'),
-            backgroundColor: Colors.green,
-          ));
+          constants.customsnackBar(context, state.errmessage, Colors.yellow);
+        } else if (state is googleSignUpSucsess) {
           GoRouter.of(context).push(Approuter.homeview);
-        } else if (state is googleSignFaliure) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(state.errmessage),
-            backgroundColor: Colors.red,
-          ));
+        } else if (state is googleSignUpFaliure) {
+          constants.customsnackBar(context, state.errmessage, Colors.yellow);
         }
       },
       builder: (context, state) {
@@ -134,7 +122,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         CustomAuthGoogle(
                             googleonPressed: () async {
-                              await authcubit.signInWithGoogle();
+                              await authcubit.signUpWithGoogle();
                             },
                             device: device,
                             authcubit: authcubit),

@@ -12,6 +12,8 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
   final auth = FirebaseAuth.instance;
+  GoogleSignIn googleSignIn = GoogleSignIn();
+
   void Register(
       {required String email,
       required String password,
@@ -29,6 +31,7 @@ class AuthCubit extends Cubit<AuthState> {
           userId: userCredential.user!.uid,
         );
         verifyEmail();
+        constants.userUid = auth.currentUser!.uid;
         emit(AuthSignSucsess());
       }
     } on FirebaseException catch (e) {
@@ -54,49 +57,46 @@ class AuthCubit extends Cubit<AuthState> {
         if (kDebugMode) {
           print("in Auth Cubit${userCredential.user!.uid}");
         }
-        final sharedPref = await SharedPreferences.getInstance();
-        await sharedPref.setString('userId', userCredential.user!.uid);
+        constants.userUid = auth.currentUser!.uid;
         emit(AuthLoginSucsess());
       } else {
-        print("in Auth Cubit  UID is Null");
+        emit(AuthLoginFaliure(
+            errmessage: 'There is an Error Please try again Later'));
       }
     } on FirebaseException catch (e) {
       emit(AuthLoginFaliure(errmessage: '${e.message}'));
     }
   }
 
-  Future<UserCredential?> signInWithGoogle() async {
+  Future<void> signUpWithGoogle() async {
     emit(LoadingSate());
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser!.authentication;
       final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
       );
       final User? currentuser =
           (await auth.signInWithCredential(credential)).user;
 
       await sendUserDatatoFirestore(
-          name: googleUser!.displayName,
+          name: googleUser.displayName,
           email: googleUser.email,
           userId: currentuser?.uid);
+      constants.userUid = currentuser?.uid;
+      emit(googleSignUpSucsess());
 
-      if (kDebugMode) {
-        print("++++++++++++++++++++++++++++++++++++++");
-        print(currentuser?.uid);
-      }
-      emit(googleSignSucsess());
-
-      return await FirebaseAuth.instance.signInWithCredential(credential);
+      await FirebaseAuth.instance.signInWithCredential(credential);
     } on Exception catch (e) {
-      emit(googleSignFaliure(errmessage: e.toString()));
+      emit(googleSignUpFaliure(errmessage: e.toString()));
       return null;
     }
   }
 
+// fix error in sign in
   Future<void> sendUserDatatoFirestore({
     required String? name,
     required String? email,
@@ -116,6 +116,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> signOut() async {
     try {
+      googleSignIn.disconnect();
       await auth.signOut();
       constants.userUid = null;
       emit(SignOutSucsess());
@@ -127,6 +128,11 @@ class AuthCubit extends Cubit<AuthState> {
   ///
   Future<void> deleteAccount() async {
     try {
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(constants.userUid)
+          .delete();
+      googleSignIn.disconnect();
       await auth.currentUser?.delete();
       constants.userUid = null;
       emit(SucsessdeleteAccount());

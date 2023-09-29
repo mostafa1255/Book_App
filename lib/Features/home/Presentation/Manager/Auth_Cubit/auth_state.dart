@@ -27,12 +27,12 @@ class AuthLoginFaliure extends AuthState {
 class LoadingSate extends AuthState {}
 //
 
-class googleSignSucsess extends AuthState {}
+class googleSignUpSucsess extends AuthState {}
 
-class googleSignFaliure extends AuthState {
+class googleSignUpFaliure extends AuthState {
   final String errmessage;
 
-  googleSignFaliure({required this.errmessage});
+  googleSignUpFaliure({required this.errmessage});
 }
 
 ///
@@ -58,4 +58,12 @@ class SignOutFaliure extends AuthState {
   final String errmessage;
 
   SignOutFaliure(this.errmessage);
+}
+
+class googleSignInSucsess extends AuthState {}
+
+class googleSignInFaliure extends AuthState {
+  final String errmessage;
+
+  googleSignInFaliure({required this.errmessage});
 }

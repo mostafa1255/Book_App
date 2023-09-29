@@ -34,11 +34,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
           GoRouter.of(context).push(Approuter.loginscreen);
         } else if (state is AuthSignFaliure) {
           constants.customsnackBar(context, state.errmessage, Colors.yellow);
-        } else if (state is googleSignSucsess) {
-          constants.customsnackBar(
-              context, "Create Email Sucsessfull", Colors.green);
+        } else if (state is googleSignUpSucsess) {
           GoRouter.of(context).push(Approuter.homeview);
-        } else if (state is googleSignFaliure) {
+        } else if (state is googleSignUpFaliure) {
           constants.customsnackBar(context, state.errmessage, Colors.yellow);
         }
       },
@@ -111,7 +109,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                           CustomAuthGoogle(
                               googleonPressed: () async {
-                                await authcubit.signInWithGoogle();
+                                await authcubit.signUpWithGoogle();
                               },
                               device: device,
                               authcubit: authcubit),
