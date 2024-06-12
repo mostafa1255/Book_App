@@ -93,7 +93,32 @@ class _ProfileSettingsScreenBodyState extends State<ProfileSettingsScreenBody> {
                   device: device,
                   txt: "Delete This Account",
                   onPressed: () {
-                    authCubit.deleteAccount();
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text('Confirm Deletion'),
+                          content: const Text(
+                              'Are you sure you want to delete this Account?'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop(
+                                    false); // Dismiss the dialog and return false.
+                              },
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                authCubit.deleteAccount();
+                              },
+                              child: const Text('Delete',
+                                  style: TextStyle(color: Colors.red)),
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   },
                 )
               ],

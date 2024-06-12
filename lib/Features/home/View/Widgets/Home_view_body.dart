@@ -3,7 +3,6 @@ import 'package:booklyapp/Features/home/Presentation/Manager/Layout_Cubit/layout
 import 'package:booklyapp/core/Constants.dart';
 import 'package:booklyapp/core/Styles.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'Best_seller_List_View.dart';
@@ -21,17 +20,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   Widget build(BuildContext context) {
     Size device = MediaQuery.sizeOf(context);
-   
-
     constants.userUid = FirebaseAuth.instance.currentUser?.uid;
-    if (kDebugMode) {
-      print("====================================================");
-      print(FirebaseAuth.instance.currentUser?.uid);
-    }
     return BlocConsumer<LayoutCubit, LayoutState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         final layoutCubit = BlocProvider.of<LayoutCubit>(context);
         return CustomScrollView(

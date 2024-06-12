@@ -59,11 +59,3 @@ class SignOutFaliure extends AuthState {
 
   SignOutFaliure(this.errmessage);
 }
-
-class googleSignInSucsess extends AuthState {}
-
-class googleSignInFaliure extends AuthState {
-  final String errmessage;
-
-  googleSignInFaliure({required this.errmessage});
-}

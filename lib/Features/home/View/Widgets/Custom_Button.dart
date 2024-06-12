@@ -20,6 +20,9 @@ class Custom_Button extends StatelessWidget {
           backgroundColor: MaterialStatePropertyAll<Color>(Colors.red),
         ),
         onPressed: onPressed,
-        child: Text(txt));
+        child: Text(
+          txt,
+          style: TextStyle(color: Colors.white),
+        ));
   }
 }

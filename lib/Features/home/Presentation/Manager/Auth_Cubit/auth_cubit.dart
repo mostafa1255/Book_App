@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../data/models/User_Model.dart';
 part 'auth_state.dart';
 
@@ -152,4 +151,23 @@ class AuthCubit extends Cubit<AuthState> {
       print("Reset faliure${e.toString()}");
     }
   }
+/*
+
+//get user login every time he enter home screen
+  Future<void> getLoginTime(User user) async {
+    try {
+      DocumentSnapshot doc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+
+      Timestamp timestamp = doc['loginTime'];
+      DateTime loginTime = timestamp.toDate();
+      print(loginTime);
+    } catch (e) {
+      print("*****************");
+      print(e.toString());
+    }
+  }
+  */
 }

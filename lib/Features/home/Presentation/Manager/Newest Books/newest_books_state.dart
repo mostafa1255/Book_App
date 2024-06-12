@@ -22,3 +22,15 @@ class NewestBooksFaliure extends NewestBooksState {
 
   const NewestBooksFaliure(this.errmessage);
 }
+
+class BooksFilteredsucsess extends NewestBooksState {
+  final List<BookModel> books;
+
+  const BooksFilteredsucsess(this.books);
+}
+
+class BooksFilteredFaliure extends NewestBooksState {
+  final String errmessage;
+
+  const BooksFilteredFaliure(this.errmessage);
+}

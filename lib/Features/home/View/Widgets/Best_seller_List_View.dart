@@ -13,10 +13,10 @@ class BestSellerListView extends StatelessWidget {
   Widget build(BuildContext context) {
     Size device = MediaQuery.sizeOf(context);
     return BlocBuilder<NewestBooksCubit, NewestBooksState>(
-      builder: (context, State) {
-        if (State is NewestBooksSuccsess) {
+      builder: (context, state) {
+        if (state is NewestBooksSuccsess) {
           return ListView.builder(
-              itemCount: State.books.length,
+              itemCount: state.books.length,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               padding: EdgeInsets.zero,
@@ -24,11 +24,11 @@ class BestSellerListView extends StatelessWidget {
                 return Padding(
                   padding:
                       EdgeInsets.symmetric(vertical: device.height * 0.015),
-                  child: BestSellerListview(bookModel: State.books[index]),
+                  child: BestSellerListview(bookModel: state.books[index]),
                 );
               });
-        } else if (State is NewestBooksFaliure) {
-          return CustomErrorMessage(errmessage: State.errmessage);
+        } else if (state is NewestBooksFaliure) {
+          return CustomErrorMessage(errmessage: state.errmessage);
         } else {
           return const CustomLoadingIndicator();
         }
